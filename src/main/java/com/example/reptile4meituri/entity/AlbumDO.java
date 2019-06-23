@@ -12,7 +12,7 @@ import javax.persistence.*;
  * @since 2019-06-15
  */
 @Entity
-@Table(name = "tbl_meituri_album")
+@Table(name = "tbl_meituri_album2")
 public class AlbumDO {
 
     /**

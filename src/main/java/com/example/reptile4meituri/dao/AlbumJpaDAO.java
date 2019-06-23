@@ -18,4 +18,11 @@ public interface AlbumJpaDAO extends JpaRepository<AlbumDO, Long> {
      * @param institutionType 机构编号
      */
     List<AlbumDO> findByInstitutionTypeEquals(Integer institutionType);
+
+    /**
+     * 根据相册编号获取单个相册记录
+     *
+     * @param number 相册编号
+     */
+    AlbumDO findByNumberEquals(Integer number);
 }

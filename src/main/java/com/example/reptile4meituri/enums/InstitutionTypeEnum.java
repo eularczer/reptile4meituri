@@ -15,6 +15,21 @@ import java.util.Objects;
 public enum InstitutionTypeEnum {
 
     /**
+     * 丝意SIEE
+     */
+    SI_YI(88,"丝意SIEE"),
+
+    /**
+     * 萝莉COS
+     */
+    LUO_LI_COS(87, "萝莉COS"),
+
+    /**
+     * 风之领域
+     */
+    FENG_ZHI_LING_YU(86, "风之领域"),
+
+    /**
      * 语画界。秀人平台下的一个写真机构。写真风格与其他机构类似。
      */
     HUA_YU_JIE(85, "语画界"),
@@ -383,15 +398,15 @@ public enum InstitutionTypeEnum {
      */
     XING_YAN_SHE(15, "星颜社"),
 
-    /**
-     * 丝享家。隶属于IESS异思趣向旗下的一个写真类型。与丝足便当类似。
-     */
-    XI_XIANG_JIA(14, "丝享家"),
-
-    /**
-     * 丝足便当。隶属于IESS异思趣向旗下的一个写真类型。与丝享家类似。
-     */
-    XI_ZU_BIAN_DANG(13, "丝足便当"),
+//    /**
+//     * 丝享家。隶属于IESS异思趣向旗下的一个写真类型。与丝足便当类似。
+//     */
+//    XI_XIANG_JIA(14, "丝享家"),
+//
+//    /**
+//     * 丝足便当。隶属于IESS异思趣向旗下的一个写真类型。与丝享家类似。
+//     */
+//    XI_ZU_BIAN_DANG(13, "丝足便当"),
 
     /**
      * 异思趣向。全称：IESS异思趣向。国内专业的丝足写真机构。图片数量比较多，质量较高！另又分类两个分类，分别是：丝足便当 丝享家
@@ -426,10 +441,10 @@ public enum InstitutionTypeEnum {
      */
     RQ_STAR(7, "RQ-STAR"),
 
-    /**
-     * Young Animal。岚特刊，日本写真杂志机构。
-     */
-    YOUNG_ANIMAL(6, "Young-Animal"),
+//    /**
+//     * Young Animal。岚特刊，日本写真杂志机构。
+//     */
+//    YOUNG_ANIMAL(6, "Young-Animal"),
 
     /**
      * For-side。日本美女摄影写真机构，目前已经停止更新了，虽然尺寸不算大，但清晰度还是可以的。

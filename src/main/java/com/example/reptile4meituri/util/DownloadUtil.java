@@ -1,5 +1,8 @@
 package com.example.reptile4meituri.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -10,6 +13,9 @@ import java.util.regex.Pattern;
  * 通用下载工具类
  */
 public class DownloadUtil {
+
+    private static final Logger logger = LoggerFactory.getLogger(DownloadUtil.class);
+
     /**
      * 图片下载
      *
@@ -29,55 +35,13 @@ public class DownloadUtil {
                 output.write(buffer, 0, length);
             }
             fileOutputStream.write(output.toByteArray());
+
+            logger.info("==>downloadPicture() onlinePath={} 下载成功", onlinePath);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
+//            e.printStackTrace();
         }
     }
 
-    /**
-     * 本地 txt 转 String
-     *
-     * @param fileName txt 文本路径
-     * @return txt 文件 String
-     */
-    public static String readFileToString(String fileName) {
-        String encoding = "UTF-8";
-        File file = new File(fileName);
-        int fileLen = (int) file.length();
-        byte[] fileContent = new byte[fileLen];
-        try (FileInputStream in = new FileInputStream(file)) {
-            in.read(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            return new String(fileContent, encoding);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
-    /**
-     * 正则成 String[]
-     *
-     * @param patternStr 正则表达式
-     * @param inputStr   输入内容
-     * @return String[]
-     */
-    public static String[] convertToStrArr(String patternStr, String inputStr) {
-        Pattern pattern = Pattern.compile(patternStr);
-        Matcher matcher = pattern.matcher(inputStr);
-        ArrayList<String> tmpList = new ArrayList<>();
-        while (matcher.find()) {
-            tmpList.add(matcher.group());
-        }
-        String[] res = new String[tmpList.size()];
-        int i = 0;
-        for (String tmp : tmpList) {
-            res[i] = tmp;
-            i++;
-        }
-        return res;
-    }
 }
