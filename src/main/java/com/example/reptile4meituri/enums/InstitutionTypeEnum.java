@@ -67,7 +67,7 @@ public enum InstitutionTypeEnum {
     /**
      * 台湾正妹。收录的写真集都是流传在网络上的台湾女神的写真套图。包括各种台湾正妹、台湾网红美女写真图片等。
      */
-    TAI_WAI_ZHENG_MEI(78, "台湾正妹"),
+    TAI_WAN_ZHENG_MEI(78, "台湾正妹"),
 
     /**
      * 猎女神。国内一家美女写真摄影网站机构。

@@ -44,7 +44,7 @@ public class DefaultController {
     /**
      * 美图日-本地存储路径前缀
      */
-    private static final String MEITURI_LOCAL_PREFIX = "F:/美图日爬虫/";
+    private static final String MEITURI_LOCAL_PREFIX = "D:/美图日爬虫/";
 
     /**
      * Step1: 获取网站图册的具体数量。
@@ -58,7 +58,7 @@ public class DefaultController {
     @PostMapping("/step1")
     public String step1() {
         final String LOCAL_FOLDER = MEITURI_LOCAL_PREFIX + "封面图/";
-        for (int i = 27865; i <= 35000; i++) {
+        for (int i = 28468; i <= 35000; i++) {
             String onlinePath = MEITURI_IMG_URL_PREFIX + i + "/0.jpg";
             String localPath = i + "-0.jpg";
             String filePath = LOCAL_FOLDER + localPath;
@@ -82,9 +82,9 @@ public class DefaultController {
     @PostMapping("/step2")
     public String step2() {
         // 当前相册最小编号
-        final int ALBUM_MIN = 27865;
+        final int ALBUM_MIN = 28468;
         // 当前相册最大编号
-        final int ALBUM_MAX = 28467;
+        final int ALBUM_MAX = 28879;
         // 用于提取单个相册图片总数的正则
         final Pattern p = Pattern.compile("\\d+P");
 

@@ -2,7 +2,10 @@
 
 美图日网站图片爬虫。嘿嘿嘿，你懂的！
 
-`截止 2019-06-21，已累计爬取 88 个专业摄影机构，28420 个妹纸图册，1632118 张小姐姐的图片！！`
+- `截止 2019-08-03，已累计爬取 88 个专业摄影机构，28832 个妹纸图册，1656140 张小姐姐的图片！！`
+- `截止 2019-06-15，更新至 27864`
+- `截止 2019-06-21，更新至 28467`（新增 612）
+- `截止 2019-08-03，更新至 28879`（新增 412）
 
 ## 0 开始出发！
 
@@ -29,7 +32,7 @@ https://ii.hywly.com/a/1/27691/2.jpg
 @PostMapping("/step1")
 public String step1() {
     final String LOCAL_FOLDER = "F:/图片爬虫/封面图/";
-    for (int i = 1; i <= 35000; i++) {
+    for (int i = 28468 i <= 35000; i++) {
         String onlinePath = MEITURI_IMG_URL_PREFIX + i + "/0.jpg";
         String localPath = i + "-0.jpg";
         String filePath = LOCAL_FOLDER + localPath;
@@ -172,29 +175,35 @@ MySQL 截图
 SQL 数据清洗：
 
 ```sql
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '57' WHERE `title` like '%Beautyleg%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '49' WHERE `title` like '%丽柜%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '31' WHERE `title` like '%克拉女神%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '62' WHERE `title` like '%尤果圈爱尤物%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '12' WHERE `title` like '%异思趣向%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '18' WHERE `title` like '%LOVEPOP%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '17' WHERE `title` like '%Digi%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '35' WHERE `title` like '%Minisuka%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '85' WHERE `title` like '%语画界%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '23' WHERE `title` like '%花漾%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '78' WHERE `title` like '%台湾正妹%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '67' WHERE `title` like '%嗲囡囡%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '45' WHERE `title` like '%头条女神%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '58' WHERE `title` like '%尤蜜荟%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '59' WHERE `title` like '%秀人%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '87' WHERE `title` like '%萝莉COS%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '86' WHERE `title` like '%风之领域%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '72' WHERE `title` like '%魅妍社%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '80' WHERE `title` like '%Cosdoki%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '28' WHERE `title` like '%Sabra%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '33' WHERE `title` like '%WPB-net%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '70' WHERE `title` like '%模范学院%';
-UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '88' WHERE `title` like '%丝意%';
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '57' WHERE `title` like '%Beautyleg%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '49' WHERE `title` like '%丽柜%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '31' WHERE `title` like '%克拉女神%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '62' WHERE `title` like '%尤果圈爱尤物%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '12' WHERE `title` like '%异思趣向%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '18' WHERE `title` like '%LOVEPOP%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '17' WHERE `title` like '%Digi%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '35' WHERE `title` like '%Minisuka%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '85' WHERE `title` like '%语画界%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '23' WHERE `title` like '%花漾%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '78' WHERE `title` like '%台湾正妹%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '67' WHERE `title` like '%嗲囡囡%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '45' WHERE `title` like '%头条女神%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '58' WHERE `title` like '%尤蜜荟%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '59' WHERE `title` like '%秀人%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '87' WHERE `title` like '%萝莉COS%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '86' WHERE `title` like '%风之领域%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '72' WHERE `title` like '%魅妍社%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '80' WHERE `title` like '%Cosdoki%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '28' WHERE `title` like '%Sabra%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '33' WHERE `title` like '%WPB-net%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '70' WHERE `title` like '%模范学院%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '88' WHERE `title` like '%丝意%' and institution_type is null; 
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '74' WHERE `title` like '%美媛馆%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '82' WHERE `title` like '%森萝财团%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '55' WHERE `title` like '%御女郎%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '15' WHERE `title` like '%星颜社%' and institution_type is null;
+UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '15' WHERE `title` like '%星颜社%' and institution_type is null;
+
 ```
 
 ## Step3: 下载图片。
@@ -230,6 +239,15 @@ private void doBatchDownload(List<AlbumDO> albumDOList) {
         }
     }
 }
+```
+spring boot 配置文件参考：
+```
+server.port=8088
+
+spring.datasource.url=jdbc:mysql://localhost:3306/dev?useUnicode=true&characterEncoding=UTF-8
+spring.datasource.username=root
+spring.datasource.password=Mysql@2019
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
 ```
 
 MySQL 统计：
