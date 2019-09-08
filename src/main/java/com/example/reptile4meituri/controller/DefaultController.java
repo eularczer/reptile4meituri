@@ -42,7 +42,7 @@ public class DefaultController {
      */
     private static final String MEITURI_IMG_URL_PREFIX = "https://ii.hywly.com/a/1/";
     /**
-     * 美图日-本地存储路径前缀
+     * 美图日-本地存储路径前缀（根据情况自定义）
      */
     private static final String MEITURI_LOCAL_PREFIX = "D:/美图日爬虫/";
 
@@ -50,15 +50,15 @@ public class DefaultController {
      * Step1: 获取网站图册的具体数量。
      * <p>
      * 图册的实际数量究竟有多少呢？由于图册编号是全局唯一的，因此可以通过请求一遍封面图来获取整个网站的图册数。
-     * <p>
-     * 结果：6~27864（共 27859 个）
-     * <p>
-     * 2019-06-21 27865~28467（新增 603 个）
      */
     @PostMapping("/step1")
     public String step1() {
         final String LOCAL_FOLDER = MEITURI_LOCAL_PREFIX + "封面图/";
-        for (int i = 28468; i <= 35000; i++) {
+        // 需要扫描相册最小编号
+        final int SCAN_MIN = 28880;
+        // 需要扫描相册最大编号
+        final int SCAN_MAX = 30000;
+        for (int i = SCAN_MIN; i <= SCAN_MAX; i++) {
             String onlinePath = MEITURI_IMG_URL_PREFIX + i + "/0.jpg";
             String localPath = i + "-0.jpg";
             String filePath = LOCAL_FOLDER + localPath;
@@ -73,18 +73,21 @@ public class DefaultController {
      * Step1 中获得的 27859 个相册并不都能正常访问。且由于下载业务需要知道各相册的图片数量以便进行遍历访问
      * （通过暴力请求需要处理异常，效率低下，且容易由于网络波动而导致循环断掉）。
      * <p>
-     * 结果：{555, 2567, 2568, 2578, 2684, 4359, 4375, 4398, 5237, 5254,
+     * 已确定不能访问的有：
+     * 555, 2567, 2568, 2578, 2684, 4359, 4375, 4398, 5237, 5254,
      * 5259, 7244, 7457, 7489, 8188, 8279, 8350, 8375, 12101, 12118,
      * 12160, 12930, 13074, 14944, 15613, 16559, 16683, 17728, 19385, 21688,
      * 22449, 22565, 23376, 23427, 23983, 24063, 24083, 24197, 24290, 27271,
-     * 27272, 27273}; 共 42 个相册不能正常访问。
+     * 27272, 27273,
+     * 29021
+     * 共 43 个相册不能正常访问。
      */
     @PostMapping("/step2")
     public String step2() {
         // 当前相册最小编号
-        final int ALBUM_MIN = 28468;
+        final int ALBUM_MIN = 28880;
         // 当前相册最大编号
-        final int ALBUM_MAX = 28879;
+        final int ALBUM_MAX = 29401;
         // 用于提取单个相册图片总数的正则
         final Pattern p = Pattern.compile("\\d+P");
 
@@ -132,10 +135,6 @@ public class DefaultController {
      * Step3: 下载单个相册图片（多线程）
      * <p>
      * 通过对应的 GET 请求参数下载对应的图册。达到手动调节线程数的效果。为了避免重复请求导致重复下载，该接口做了幂等处理。
-     * <p>
-     * Step2 统计得出能正常访问的相册共 27817 个，图片总数为 1602076 张。
-     * <p>
-     * 2019-06-21 30042
      */
     @GetMapping("/step3/{number}")
     public String step3(@PathVariable("number") Integer number) {
