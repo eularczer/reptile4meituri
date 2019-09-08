@@ -15,14 +15,19 @@ import java.util.Objects;
 public enum InstitutionTypeEnum {
 
     /**
-     * 丝意SIEE
+     * 阳光宝贝SUNGIRL
      */
-    SI_YI(88,"丝意SIEE"),
+    SUN_GIRL(88,"阳光宝贝SUNGIRL"),
 
     /**
-     * 萝莉COS
+     * 丝意SIEE
      */
-    LUO_LI_COS(87, "萝莉COS"),
+    SI_YI(87,"丝意SIEE"),
+
+//    /**
+//     * 萝莉COS
+//     */
+//    LUO_LI_COS(87, "萝莉COS"),
 
     /**
      * 风之领域
