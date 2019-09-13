@@ -1,7 +1,7 @@
 package com.example.reptile4meituri.controller;
 
-import com.example.reptile4meituri.dao.AlbumJpaDAO;
-import com.example.reptile4meituri.entity.AlbumDO;
+import com.example.reptile4meituri.dao.MeituriJpaDAO;
+import com.example.reptile4meituri.entity.MeituriDO;
 import com.example.reptile4meituri.enums.InstitutionTypeEnum;
 import com.example.reptile4meituri.util.DownloadUtil;
 import org.jsoup.Jsoup;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,16 +22,19 @@ import java.util.regex.Pattern;
  * 美图日-爬虫 HTTP 调用接口
  *
  * @author zhangyiyang
+ * @see TujidaoController
  * @since 2019-06-15
+ * @deprecated https://www.meituri.com/ 报 403
  */
+@Deprecated
 @RestController
 @RequestMapping("/v1")
-public class DefaultController {
+public class MeituriController {
 
-    private static final Logger logger = LoggerFactory.getLogger(DefaultController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MeituriController.class);
 
     @Autowired
-    private AlbumJpaDAO albumJpaDAO;
+    private MeituriJpaDAO albumJpaDAO;
 
     /**
      * 美图日-相册详情页面路径前缀
@@ -118,7 +121,7 @@ public class DefaultController {
 
             // 持久化到数据库，注意此处并没有根据 InstitutionTypeEnum 枚举进行 institutionType 的赋值，
             // 这一步将涉及数据清洗，较为繁琐，代码未给出
-            AlbumDO albumDO = new AlbumDO();
+            MeituriDO albumDO = new MeituriDO();
             albumDO.setNumber(i);
             albumDO.setTotal(total);
             albumDO.setTitle(title);
@@ -138,7 +141,7 @@ public class DefaultController {
      */
     @GetMapping("/step3/{number}")
     public String step3(@PathVariable("number") Integer number) {
-        List<AlbumDO> albumDOList = albumJpaDAO.findByInstitutionTypeEquals(number);
+        List<MeituriDO> albumDOList = albumJpaDAO.findByInstitutionTypeEquals(number);
         this.doBatchDownload(albumDOList);
 
         return "success";
@@ -149,14 +152,14 @@ public class DefaultController {
      */
     @PostMapping("/step4")
     public String step4() {
-        List<AlbumDO> albumDOList = albumJpaDAO.findAll();
+        List<MeituriDO> albumDOList = albumJpaDAO.findAll();
         this.doBatchDownload(albumDOList);
 
         return "success";
     }
 
-    private void doBatchDownload(List<AlbumDO> albumDOList) {
-        for (AlbumDO albumDO : albumDOList) {
+    private void doBatchDownload(List<MeituriDO> albumDOList) {
+        for (MeituriDO albumDO : albumDOList) {
 
             int total = albumDO.getTotal();
             int num = albumDO.getNumber();

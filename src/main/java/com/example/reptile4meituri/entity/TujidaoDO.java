@@ -1,19 +1,23 @@
 package com.example.reptile4meituri.entity;
 
-import com.example.reptile4meituri.enums.InstitutionTypeEnum;
 
 import javax.persistence.*;
 
 /**
- * 美图日-相册实体类
- * eg.https://ii.hywly.com/a/1/27691/2.jpg
+ * 图集岛-相册实体类
  *
  * @author zhangyiyang
- * @since 2019-06-15
+ * @since 2019-09-12
  */
 @Entity
-@Table(name = "tbl_meituri_album2")
-public class AlbumDO {
+@Table(name = "tbl_tujidao_album")
+public class TujidaoDO {
+    // <div class="c1">
+    //   <ul>
+    //     <li><span>2019-9-13</span><a href="http://www.tujidao.com/a/?id=29249">[57p] [Cosdoki] Yuzuna Aida 合田柚奈 aidayuzuna_pic_sailor2</a></li>
+    //     <li><span>2019-9-13</span><a href="http://www.tujidao.com/a/?id=29248">[39p] [Cosdoki] Yuzuna Aida 合田柚奈 aidayuzuna_pic_sailor1</a></li>
+    //   </ul>
+    // </div>
 
     /**
      * ID 主键
@@ -38,19 +42,16 @@ public class AlbumDO {
     private Integer total;
 
     /**
-     * 标题（文件夹名的一部分）
-     * eg.杨晨晨sugar《蕾丝控福利》 [语画界XIAOYU] Vol.051 写真集
+     * 标题
      */
     @Column(name = "title")
     private String title;
 
     /**
      * 所属机构
-     *
-     * @see InstitutionTypeEnum
      */
-    @Column(name = "institution_type")
-    private Integer institutionType;
+    @Column(name = "type")
+    private String type;
 
 
     public Integer getNumber() {
@@ -85,11 +86,11 @@ public class AlbumDO {
         this.id = id;
     }
 
-    public Integer getInstitutionType() {
-        return institutionType;
+    public String getType() {
+        return type;
     }
 
-    public void setInstitutionType(Integer institutionType) {
-        this.institutionType = institutionType;
+    public void setType(String type) {
+        this.type = type;
     }
 }

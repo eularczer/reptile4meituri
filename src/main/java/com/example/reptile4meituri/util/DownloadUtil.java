@@ -5,9 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 通用下载工具类
@@ -36,10 +33,9 @@ public class DownloadUtil {
             }
             fileOutputStream.write(output.toByteArray());
 
-            logger.info("==>downloadPicture() onlinePath={} 下载成功", onlinePath);
+            logger.info("==>onlinePath={} localPath={} 下载成功", onlinePath, localPath);
         } catch (Exception e) {
             logger.error(e.getMessage());
-//            e.printStackTrace();
         }
     }
 

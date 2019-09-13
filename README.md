@@ -6,7 +6,14 @@
 - `截止 2019-06-15，更新至 27864`
 - `截止 2019-06-21，更新至 28467`（新增 612）
 - `截止 2019-08-03，更新至 28879`（新增 412）
-- `截止 2019-09-08，更新至 29181`（新增 302）
+
+注意：近日侦测到访问美图日域名报 443：
+
+![](readme/http443.png)
+
+遂开始逐步寻找使用 http://www.tujidao.com/ 替代：
+
+![](readme/tujidao.png)
 
 ## 0 开始出发！
 
@@ -212,6 +219,7 @@ UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '30' WHERE `title` li
 UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '34' WHERE `title` like '%网红馆%' and institution_type is null;
 UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '46' WHERE `title` like '%爱秀ISHOW%' and institution_type is null;
 UPDATE `dev`.`tbl_meituri_album2` SET `institution_type` = '88' WHERE `title` like '%阳光宝贝%' and institution_type is null;
+
 ```
 
 ## Step3: 下载图片。

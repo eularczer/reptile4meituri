@@ -12,17 +12,18 @@ import java.util.Objects;
  * @author zhangyiyang
  * @since 2019-06-15
  */
+@Deprecated
 public enum InstitutionTypeEnum {
 
     /**
      * 阳光宝贝SUNGIRL
      */
-    SUN_GIRL(88,"阳光宝贝SUNGIRL"),
+    SUN_GIRL(88, "阳光宝贝SUNGIRL"),
 
     /**
      * 丝意SIEE
      */
-    SI_YI(87,"丝意SIEE"),
+    SI_YI(87, "丝意SIEE"),
 
 //    /**
 //     * 萝莉COS
