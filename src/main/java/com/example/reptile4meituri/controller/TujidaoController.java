@@ -2,7 +2,7 @@ package com.example.reptile4meituri.controller;
 
 import com.example.reptile4meituri.dao.TujidaoJpaDAO;
 import com.example.reptile4meituri.entity.TujidaoDO;
-import com.example.reptile4meituri.util.DownloadUtil;
+import com.example.reptile4meituri.util.DownImageThread;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Pattern;
 
 /**
@@ -41,7 +43,9 @@ public class TujidaoController {
     /**
      * 图集岛-本地存储路径前缀（根据情况自定义）
      */
-    private static final String TUJIDAO_LOCAL_PREFIX = "D:/图集岛爬虫/";
+//    private static final String TUJIDAO_LOCAL_PREFIX = "D:/图集岛爬虫（20001-27864）/";
+//    private static final String TUJIDAO_LOCAL_PREFIX = "D:/图集岛爬虫（10001-20000）/";
+    private static final String TUJIDAO_LOCAL_PREFIX = "D:/图集岛爬虫（00001-10000）/";
     /**
      * 图集岛-图片真实路径前缀
      */
@@ -71,7 +75,7 @@ public class TujidaoController {
 
         Document document = null;
         final int MIN_PAGE = 1;
-        final int MAX_PAGE = 1447;
+        final int MAX_PAGE = 2;
         for (int i = MIN_PAGE; i <= MAX_PAGE; i++) {
             try {
                 document = Jsoup.connect(TUJIDAO_URL_PREFIX + i).cookies(cookiesMap).get();
@@ -108,8 +112,14 @@ public class TujidaoController {
      */
     @PostMapping("/step2")
     public String step2() {
-        final int startInt = 29181;
-        final int endInt = 29249;
+//        final int startInt = 20001;
+//        final int endInt = 22347;
+
+//        final int startInt = 10001;
+//        final int endInt = 10744;
+
+        final int startInt = 1;
+        final int endInt = 10000;
         List<TujidaoDO> list = tujidaoJpaDAO.findAllByNumberBetweenOrderByNumberDesc(startInt, endInt);
         this.doBatchDownload(list);
 
@@ -138,6 +148,7 @@ public class TujidaoController {
     }
 
     private void doBatchDownload(List<TujidaoDO> albumDOList) {
+        ExecutorService executorService = Executors.newFixedThreadPool(8);
         for (TujidaoDO albumDO : albumDOList) {
 
             int total = albumDO.getTotal();
@@ -160,7 +171,9 @@ public class TujidaoController {
                 // 幂等，若当前文件未下载，则进行下载
                 File file2 = new File(localPath);
                 if (!file2.exists()) {
-                    DownloadUtil.downloadPicture(onlinePath, localPath);
+                    Runnable runnable = new DownImageThread(onlinePath, localPath);
+                    executorService.execute(runnable);
+//                    DownloadUtil.downloadPicture(onlinePath, localPath);
                 }
             }
         }
